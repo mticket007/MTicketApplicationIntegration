@@ -32,9 +32,8 @@ public class QrcodeGeneratorView extends AppCompatActivity {
     private Bitmap bitmap;
     private String QrcodeValue;
     private TextView errorTv;
-    private Date time_of_booking,expiryTime;
     String theValue;
-    String advertisement="Swachh Bharat Abhiyan";
+
     //size of the Bitmap
     int size;
     @Override
@@ -47,19 +46,27 @@ public class QrcodeGeneratorView extends AppCompatActivity {
         String sourceStation=getIntent().getStringExtra("source");
         String destinationStation=getIntent().getStringExtra("destination");
         int price=getIntent().getIntExtra("price",0);
-        time_of_booking=(Date)getIntent().getExtras().get("time_of_booking");
-        expiryTime=(Date)getIntent().getExtras().get("expiryTime");
+        String bookingTime,expiry_time,advertisement="Swachh_Bharat_Abhiyan";
+        bookingTime=getIntent().getStringExtra("bookingTime");
+        expiry_time=getIntent().getStringExtra("expiry_time");
         Qrcodeid=findViewById(R.id.Qrcodeid);
         //errorTv instantiating
         errorTv=findViewById(R.id.errorTv);
-        QrcodeValue="{\"sourceStation\":"+sourceStation+",\"destinationStation\":"+destinationStation+",\"fair\":"+price+",\"advertisement\":"+advertisement+",\"time_of_booking\":"+time_of_booking+",\"expiryTime\":"+expiryTime+"}";
+        QrcodeValue="{\"sourceStation\":"+sourceStation+",\"destinationStation\":"+destinationStation+",\"fair\":"+price+",\"advertisement\":"+advertisement+",\"bookingTime\":"+bookingTime+",\"expiry_time\":"+expiry_time+"}";
+        System.out.println("size of string is "+QrcodeValue.length());
         try{
+            System.out.println("code is executed before conversion jsonObject");
+            //error is in this part while converting from string to the json
             JSONObject jsonObject=new JSONObject(QrcodeValue);
             theValue=jsonObject.toString();
+
         }
         catch(JSONException e)
         {
-           e.printStackTrace();
+
+          e.printStackTrace();
+            System.out.println("before exception"+theValue.charAt(85));
+
         }
         // current date of the generation of the QRCODE and Random number
                 try {
