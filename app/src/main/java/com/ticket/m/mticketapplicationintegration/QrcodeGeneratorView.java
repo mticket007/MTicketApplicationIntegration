@@ -46,13 +46,13 @@ public class QrcodeGeneratorView extends AppCompatActivity {
         String sourceStation=getIntent().getStringExtra("source");
         String destinationStation=getIntent().getStringExtra("destination");
         int price=getIntent().getIntExtra("price",0);
-        String bookingTime,expiry_time,advertisement="Swachh_Bharat_Abhiyan";
+        String bookingTime,expiry_time;
         bookingTime=getIntent().getStringExtra("bookingTime");
         expiry_time=getIntent().getStringExtra("expiry_time");
         Qrcodeid=findViewById(R.id.Qrcodeid);
         //errorTv instantiating
         errorTv=findViewById(R.id.errorTv);
-        QrcodeValue="{\"sourceStation\":"+sourceStation+",\"destinationStation\":"+destinationStation+",\"fair\":"+price+",\"advertisement\":"+advertisement+",\"bookingTime\":"+bookingTime+",\"expiry_time\":"+expiry_time+"}";
+        QrcodeValue="{\"sourceStation\":"+sourceStation+",\"destinationStation\":"+destinationStation+",\"fair\":"+price+",\"bookingTime\":"+bookingTime+",\"expiry_time\":"+expiry_time+"}";
         System.out.println("size of string is "+QrcodeValue.length());
         try{
             System.out.println("code is executed before conversion jsonObject");
